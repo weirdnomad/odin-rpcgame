@@ -47,10 +47,12 @@ if (computerChoice === 0) {
 
 alert("You choose " + playerDisplay + ", and the computer choose " + computerDisplay + ".");
 
-if (
-  (playerResult == "Rock" && computerDisplay == "Scissors") ||
-  (playerResult == "Scissors" && computerDisplay == "Paper") ||
-  (playerResult == "Paper" && computerDisplay == "Rock")
+if (parseInt(playerResult) === parseInt(computerChoice)) {
+    alert("It's a tie !")
+} else if (
+  (playerDisplay == "Rock" && computerDisplay == "Scissors") ||
+  (playerDisplay == "Scissors" && computerDisplay == "Paper") ||
+  (playerDisplay == "Paper" && computerDisplay == "Rock")
 ) {
   alert("You win this !");
   playerPoint = ++playerPoint;
@@ -58,3 +60,5 @@ if (
   alert("You lose...");
   computerPoint = ++computerPoint;
 }
+
+alert("Scores :" +"\n" + "You : " + playerPoint + "         Computer : " + computerPoint)
