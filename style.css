@@ -1,0 +1,72 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+}
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+#root,
+#__next {
+  isolation: isolate;
+}
+
+h1 {
+    font-size: 3.5rem;
+    margin: 5% auto;
+}
+
+.def {
+    font-size: 2rem;
+}
+
+button {
+    font-size: 5rem;
+    border-radius: 25%;
+    margin: 5% 24px;
+    background-color: hsl(219, 56%, 39%);
+    border: 2px solid black;
+}
+
+button:hover {
+    cursor: pointer;
+    transition: ease 0.5s;
+    background-color: hsla(219, 43%, 45%, 0.76);
+}
+
+#playerDisplay, #resultDisplay, #computerDisplay {
+    font-size: 2rem;
+    
+}

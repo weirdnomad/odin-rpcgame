@@ -1,72 +1,50 @@
-/*  
-    ASK playerName and STORE it in playerName
-    ASK to choose rock paper or scissors and STORE it playerChoice
-    SET a random number and STORE it in computerChoice
-    SET 2 variable for points
-    COMPARE the 2 choices to know who win
-    ADD point to the winner
-    LOOP the game 5 time
-    DECLARE the winner
-*/
-let playerPoint = 0;
-let computerPoint = 0;
+const choices = ["rock", "paper", "scissors"];
+const playerDisplay = document.getElementById("playerDisplay");
+const computerDisplay = document.getElementById("computerDisplay");
+const resultDisplay = document.getElementById("resultDisplay");
+const playerScoreDisplay = document.querySelector("#playerScoreDisplay");
+const computerScoreDisplay = document.querySelector("#computerScoreDisplay");
+let playerScore = "0";
+let computerScore = "0";
+playerScoreDisplay.textContent = "0";
+computerScoreDisplay.textContent = "0";
 
-let playerName = prompt("What's your name pal ?");
-if (playerName == null) {
-  alert("It's sad you don't want to play...");
-}
-playerName = playerName.charAt(0).toUpperCase() + playerName.slice(1);
-alert("All right " + playerName + ", let's play then.");
+function playGame(playerChoice) {
+  const computerChoice = choices[Math.floor(Math.random() * 3)];
+  console.log(computerChoice);
+  let result = "";
 
-for (let i = 0; i < 5; i++) {
-  
-  let playerChoice = prompt("Rock, Paper or Scissors ?");
-  let playerResult = playerChoice.toLowerCase();
-  let playerDisplay = playerResult.charAt(0).toUpperCase() + playerResult.slice(1);
-
-  if (playerDisplay !== "Rock" && playerDisplay !== "Paper" && playerDisplay !== "Scissors") {
-    alert("This is not a valid choice " + playerName + ".");
-  }
-
-  if (playerDisplay === "Rock") {
-    playerResult = 0;
-  } else if (playerDisplay === "Paper") {
-    playerResult = 1;
+  if (computerChoice === playerChoice) {
+    result = "IT'S A TIE!";
   } else {
-    playerResult = 2;
+    switch (playerChoice) {
+      case "rock":
+        result = computerChoice === "scissors" ? "YOU WIN" : "YOU LOSE";
+        break;
+      case "paper":
+        result = computerChoice === "rock" ? "YOU WIN" : "YOU LOSE";
+        break;
+      case "scissors":
+        result = computerChoice === "paper" ? "YOU WIN" : "YOU LOSE";
+        break;
+    }
   }
 
-  let computerChoice = Math.floor(Math.random() * 3);
-  let computerDisplay;
-
-  if (computerChoice === 0) {
-    computerDisplay = "Rock";
-  } else if (computerChoice === 1) {
-    computerDisplay = "Paper";
-  } else {
-    computerDisplay = "Scissors";
+  switch (result) {
+    case "YOU WIN":
+      playerScore++;
+      playerScoreDisplay.textContent = playerScore;
+      break;
+    case "YOU LOSE":
+      computerScore++;
+      computerScoreDisplay.textContent = computerScore;
+      break;
   }
 
-  alert("You choose " + playerDisplay + ", and the computer choose " + computerDisplay + ".");
-
-  if (parseInt(playerResult) === parseInt(computerChoice)) {
-    alert("It's a tie !");
-    i = --i;
-  } else if (
-    (playerDisplay == "Rock" && computerDisplay == "Scissors") ||
-    (playerDisplay == "Scissors" && computerDisplay == "Paper") ||
-    (playerDisplay == "Paper" && computerDisplay == "Rock")
-  ) {
-    alert("You win this !");
-    playerPoint = ++playerPoint;
-  } else {
-    alert("You lose...");
-    computerPoint = ++computerPoint;
+  if (playerScore == 5 || computerScore == 5) {
+    result = "GAME IS DONE!";
+    playerScore = 0;
+    computerScore = 0;
   }
-
-  alert("Scores :" + "\n" + "You : " + playerPoint + "         Computer : " + computerPoint);
-
-  if (i == 5) {
-    alert("The game is over. Final scores :" + "\n" + "You : " + playerPoint + "         Computer : " + computerPoint);
-  }
+  resultDisplay.textContent = result;
 }
